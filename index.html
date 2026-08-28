@@ -39,20 +39,20 @@
             height: 100%;
             object-fit: contain;
         }
-        /* UI Screens & Overlays matching user image style */
+        /* UI Screens & Overlays */
         .screen {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(2, 2, 12, 0.95);
+            background: rgba(2, 2, 12, 0.94);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             padding: 20px;
             overflow-y: auto;
             transition: opacity 0.25s ease;
@@ -63,53 +63,48 @@
             display: none !important;
         }
         h1.title {
-            font-size: clamp(36px, 6vw, 52px);
+            font-size: clamp(32px, 7vw, 56px);
             color: #00f3ff;
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 40px rgba(0, 243, 255, 0.4);
-            margin-bottom: 5px;
+            text-shadow: 0 0 25px rgba(0, 243, 255, 0.8), 0 0 50px rgba(0, 243, 255, 0.4);
+            margin-bottom: 25px;
             text-align: center;
             letter-spacing: 4px;
         }
-        .subtitle {
-            font-size: 11px;
-            color: #8892b0;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: center;
-        }
         .menu-btn {
-            background: transparent;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2) 0%, rgba(0, 102, 255, 0.3) 100%);
             color: #00f3ff;
             border: 2px solid #00f3ff;
             width: 280px;
-            max-width: 85vw;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 25px;
+            max-width: 80vw;
+            padding: 14px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 243, 255, 0.25);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
             transition: all 0.2s ease;
-            margin: 6px 0;
+            margin: 8px 0;
             letter-spacing: 2px;
             text-align: center;
             text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
         }
         .menu-btn:hover {
-            background: rgba(0, 243, 255, 0.15);
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+            background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.8);
         }
         .menu-btn-secondary {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.2) 0%, rgba(127, 0, 255, 0.3) 100%);
             color: #ff007f;
-            border-color: #ff007f;
-            box-shadow: 0 0 12px rgba(255, 0, 127, 0.25);
+            border: 2px solid #ff007f;
             text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
         }
         .menu-btn-secondary:hover {
-            background: rgba(255, 0, 127, 0.15);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+            background: linear-gradient(135deg, #ff007f 0%, #7f00ff 100%);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.8);
         }
         /* HUD Top Bar */
         #hud {
@@ -319,11 +314,10 @@
     <!-- Canvas -->
     <canvas id="gameCanvas"></canvas>
 
-    <!-- 1. Main Menu Screen (Matching Reference Image Layout) -->
+    <!-- 1. Main Menu Screen -->
     <div id="menu-screen" class="screen">
         <h1 class="title">星际守护者</h1>
-        <div class="subtitle">STAR GUARDIAN - ULTIMATE EDITION</div>
-        
+        <p style="color: #a0aec0; margin-bottom: 25px; letter-spacing: 1px;">STAR GUARDIAN - ULTIMATE EDITION</p>
         <button class="menu-btn" onclick="startMode('single')">单人游戏</button>
         <button class="menu-btn" onclick="startMode('coop')">双人合作</button>
         <button class="menu-btn" onclick="startMode('pvp')">双人 PK</button>
@@ -337,17 +331,17 @@
     <div id="fighter-screen" class="screen hidden">
         <h1 class="title" style="font-size: 32px;">选择战机</h1>
         <div class="grid-content" style="width: 100%; max-width: 600px; margin-bottom: 20px;">
-            <div class="card-item" id="fighter-card-0" style="cursor: pointer;" onclick="selectFighter(0)">
+            <div class="card-item unlocked" style="cursor: pointer;" onclick="selectFighter(0)">
                 <h4>雷霆战机 (默认)</h4>
-                <p>均衡型全能战机，火力与机动兼备。</p>
+                <p>均衡型全能战机，火力与机动兼备。当前已装备</p>
             </div>
-            <div class="card-item" id="fighter-card-1" style="cursor: pointer;" onclick="selectFighter(1)">
+            <div class="card-item unlocked" style="cursor: pointer;" onclick="selectFighter(1)">
                 <h4>幻影拦截者</h4>
-                <p>超高机动移速，穿透脉冲双倍连发。</p>
+                <p>高移速与双翼穿透脉冲，双倍连发率</p>
             </div>
-            <div class="card-item" id="fighter-card-2" style="cursor: pointer;" onclick="selectFighter(2)">
+            <div class="card-item unlocked" style="cursor: pointer;" onclick="selectFighter(2)">
                 <h4>泰坦重装堡垒</h4>
-                <p>重型核心输出，自带坚固护甲与高额伤害。</p>
+                <p>自带高级护甲与重型强力轰炸</p>
             </div>
         </div>
         <button class="menu-btn" onclick="openScreen('menu-screen')">返回主菜单</button>
@@ -357,7 +351,7 @@
     <div id="shop-screen" class="screen hidden">
         <h1 class="title" style="font-size: 32px;">技能商店</h1>
         <p style="color: #ffcc00; margin-bottom: 15px; font-weight: bold;">当前星际币: <span id="shop-coins">0</span></p>
-        <div class="grid-content" style="width: 100%; max-width: 650px; margin-bottom: 20px;">
+        <div class="grid-content" style="width: 100%; max-width: 600px; margin-bottom: 20px;">
             <div class="card-item unlocked">
                 <h4>多路激光升级</h4>
                 <p>等级: <span id="shop-laser-lvl">1</span>/5 (造价: 50币)</p>
@@ -373,26 +367,11 @@
                 <p>等级: <span id="shop-energy-lvl">1</span>/5 (造价: 80币)</p>
                 <button class="menu-btn" style="width: 100%; padding: 8px; font-size: 14px; margin-top: 5px;" onclick="buyShopItem('energy')">升级</button>
             </div>
-            <div class="card-item unlocked">
-                <h4>🚀 推进器超频 (移速)</h4>
-                <p>等级: <span id="shop-speed-lvl">1</span>/5 (造价: 60币)</p>
-                <button class="menu-btn" style="width: 100%; padding: 8px; font-size: 14px; margin-top: 5px;" onclick="buyShopItem('speed')">升级</button>
-            </div>
-            <div class="card-item unlocked">
-                <h4>🧲 磁力金币采集</h4>
-                <p>等级: <span id="shop-magnet-lvl">1</span>/5 (造价: 70币)</p>
-                <button class="menu-btn" style="width: 100%; padding: 8px; font-size: 14px; margin-top: 5px;" onclick="buyShopItem('magnet')">升级</button>
-            </div>
-            <div class="card-item unlocked">
-                <h4>⚡ 核心输出增强 (伤害)</h4>
-                <p>等级: <span id="shop-power-lvl">1</span>/5 (造价: 90币)</p>
-                <button class="menu-btn" style="width: 100%; padding: 8px; font-size: 14px; margin-top: 5px;" onclick="buyShopItem('power')">升级</button>
-            </div>
         </div>
         <button class="menu-btn" onclick="openScreen('menu-screen')">返回主菜单</button>
     </div>
 
-    <!-- 4. Achievements Screen -->
+    <!-- 4. Achievements Screen (30 Badges) -->
     <div id="achievement-screen" class="screen hidden">
         <div class="modal-box">
             <div class="modal-header">
@@ -466,10 +445,6 @@
     canvas.width = screenWidth;
     canvas.height = screenHeight;
 
-    // Mobile speed scaling to ensure smooth performance across devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const speedScale = isMobile ? 0.7 : 0.95;
-
     window.addEventListener('resize', () => {
         screenWidth = window.innerWidth;
         screenHeight = window.innerHeight;
@@ -494,46 +469,46 @@
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(800, now);
                 osc.frequency.exponentialRampToValueAtTime(100, now + 0.15);
-                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.setValueAtTime(0.1, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
                 osc.start(now); osc.stop(now + 0.15);
             } else if (type === 'explosion') {
                 osc.type = 'square';
                 osc.frequency.setValueAtTime(130, now);
                 osc.frequency.exponentialRampToValueAtTime(30, now + 0.3);
-                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.setValueAtTime(0.2, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
                 osc.start(now); osc.stop(now + 0.3);
             } else if (type === 'hit') {
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(220, now);
                 osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
-                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.setValueAtTime(0.2, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
                 osc.start(now); osc.stop(now + 0.1);
             }
         } catch(e){}
     }
 
-    // Achievements Data
+    // 30 Achievements Data
     const achievementsList = [
         { id: 'first_blood', cat: 'combat', title: '初出茅庐', desc: '击毁第1个敌人', unlocked: true },
-        { id: 'hundred_kills', cat: 'combat', title: '百战百胜', desc: '累计击毁100个敌人', unlocked: false, check: () => totalKills >= 100 },
-        { id: 'thousand_kills', cat: 'combat', title: '千军万马', desc: '累计击毁1000个敌人', unlocked: false, check: () => totalKills >= 1000 },
-        { id: 'boss_slayer', cat: 'boss', title: 'BOSS征服者', desc: '击败首个宇宙领主', unlocked: false, check: () => bossKills >= 1 },
-        { id: 'boss_master', cat: 'boss', title: 'BOSS终结者', desc: '累计击败10个BOSS', unlocked: false, check: () => bossKills >= 10 },
-        { id: 'score_1000', cat: 'score', title: '小有积蓄', desc: '单局得分达到1,000', unlocked: true, check: () => score >= 1000 },
-        { id: 'score_10000', cat: 'score', title: '腰缠万贯', desc: '单局得分达到10,000', unlocked: false, check: () => score >= 10000 },
-        { id: 'score_100000', cat: 'score', title: '富可敌国', desc: '单局得分达到100,000', unlocked: false, check: () => score >= 100000 },
-        { id: 'wave_5', cat: 'survival', title: '名扬四海', desc: '达到第5波防线', unlocked: false, check: () => wave >= 5 },
-        { id: 'wave_10', cat: 'survival', title: '登峰造极', desc: '达到第10波防线', unlocked: false, check: () => wave >= 10 },
+        { id: 'hundred_kills', cat: 'combat', title: '百战百胜', desc: '累计击毁100个敌人', unlocked: false },
+        { id: 'thousand_kills', cat: 'combat', title: '千军万马', desc: '累计击毁1000个敌人', unlocked: false },
+        { id: 'boss_slayer', cat: 'boss', title: 'BOSS征服者', desc: '击败首个宇宙领主', unlocked: false },
+        { id: 'boss_master', cat: 'boss', title: 'BOSS终结者', desc: '累计击败10个BOSS', unlocked: false },
+        { id: 'score_1000', cat: 'score', title: '小有积蓄', desc: '单局得分达到1,000', unlocked: true },
+        { id: 'score_10000', cat: 'score', title: '腰缠万贯', desc: '单局得分达到10,000', unlocked: false },
+        { id: 'score_100000', cat: 'score', title: '富可敌国', desc: '单局得分达到100,000', unlocked: false },
+        { id: 'wave_5', cat: 'survival', title: '名扬四海', desc: '达到第5波防线', unlocked: false },
+        { id: 'wave_10', cat: 'survival', title: '登峰造极', desc: '达到第10波防线', unlocked: false },
         { id: 'novice_pilot', cat: 'special', title: '新手玩家', desc: '完成第一场游戏', unlocked: true },
-        { id: 'veteran_pilot', cat: 'special', title: '老玩家', desc: '游玩超过10场游戏', unlocked: false, check: () => gamesPlayed >= 10 },
+        { id: 'veteran_pilot', cat: 'special', title: '老玩家', desc: '游玩超过10场游戏', unlocked: false },
         { id: 'collector_coins', cat: 'special', title: '战机收藏家', desc: '解锁所有战机', unlocked: true },
         { id: 'skin_master', cat: 'special', title: '皮肤收藏家', desc: '解锁所有皮肤外观', unlocked: false },
-        { id: 'laser_master', cat: 'combat', title: '激光大师', desc: '将激光升至最高级', unlocked: false, check: () => upgrades.laser >= 5 },
-        { id: 'shield_expert', cat: 'survival', title: '护盾专家', desc: '将护盾升至最高级', unlocked: false, check: () => upgrades.shield >= 3 },
-        { id: 'energy_god', cat: 'special', title: '能量大帝', desc: '将能量上限升至最高级', unlocked: false, check: () => upgrades.energy >= 5 },
+        { id: 'laser_master', cat: 'combat', title: '激光大师', desc: '将激光升至最高级', unlocked: false },
+        { id: 'shield_expert', cat: 'survival', title: '护盾专家', desc: '将护盾升至最高级', unlocked: false },
+        { id: 'energy_god', cat: 'special', title: '能量大帝', desc: '将能量上限升至最高级', unlocked: false },
         { id: 'coop_mode', cat: 'special', title: '双人合作', desc: '体验双人合作模式', unlocked: false },
         { id: 'pvp_mode', cat: 'special', title: '双人PK', desc: '体验双人对战模式', unlocked: false },
         { id: 'no_damage', cat: 'survival', title: '完美无瑕', desc: '无伤通关1关', unlocked: false },
@@ -545,47 +520,35 @@
         { id: 'ach_26', cat: 'combat', title: '精准打击', desc: '命中率超过90%', unlocked: false },
         { id: 'ach_27', cat: 'survival', title: '极限闪避', desc: '连续闪避10次弹幕', unlocked: false },
         { id: 'ach_28', cat: 'boss', title: '深渊领主', desc: '击败深渊BOSS', unlocked: false },
-        { id: 'ach_29', cat: 'score', title: '财富密码', desc: '拥有超过1000星际币', unlocked: false, check: () => coins >= 1000 },
+        { id: 'ach_29', cat: 'score', title: '财富密码', desc: '拥有超过1000星际币', unlocked: false },
         { id: 'ach_30', cat: 'special', title: '终极守护者', desc: '通关全部无限波次', unlocked: false }
     ];
 
+    // Game state variables
     let gameMode = 'single'; // 'single', 'coop', 'pvp'
-    let gameState = 'MENU';
+    let gameState = 'MENU';  // MENU, PLAYING, PAUSED, GAMEOVER
     let score = 0;
     let lives1 = 3, lives2 = 3;
     let wave = 1;
     let energy = 100;
-    let coins = parseInt(localStorage.getItem('sg_coins') || '300');
+    let coins = parseInt(localStorage.getItem('sg_coins') || '200');
     let highScore = parseInt(localStorage.getItem('sg_highscore') || '0');
-    let selectedFighterType = parseInt(localStorage.getItem('sg_fighter') || '0');
-    let totalKills = parseInt(localStorage.getItem('sg_totalkills') || '0');
-    let bossKills = parseInt(localStorage.getItem('sg_bosskills') || '0');
-    let gamesPlayed = parseInt(localStorage.getItem('sg_gamesplayed') || '0');
-
-    let savedAch = JSON.parse(localStorage.getItem('sg_achievements') || '[]');
-    achievementsList.forEach(ach => {
-        if (savedAch.includes(ach.id)) ach.unlocked = true;
-    });
+    let selectedFighterType = 0;
 
     let upgrades = {
         laser: parseInt(localStorage.getItem('sg_upg_laser') || '1'),
         shield: parseInt(localStorage.getItem('sg_upg_shield') || '0'),
-        energy: parseInt(localStorage.getItem('sg_upg_energy') || '1'),
-        speed: parseInt(localStorage.getItem('sg_upg_speed') || '1'),
-        magnet: parseInt(localStorage.getItem('sg_upg_magnet') || '1'),
-        power: parseInt(localStorage.getItem('sg_upg_power') || '1')
+        energy: parseInt(localStorage.getItem('sg_upg_energy') || '1')
     };
 
-    // Inputs
+    // Inputs & Touch/Mouse drag state
     const keys = {};
     let pointerX = screenWidth / 2;
     let pointerY = screenHeight - 120;
     let isPointerDown = false;
 
-    // Robust keyboard tracking
     window.addEventListener('keydown', e => {
         keys[e.code] = true;
-        keys[e.key] = true;
         if (e.code === 'Escape' && (gameState === 'PLAYING' || gameState === 'PAUSED')) {
             togglePause();
         }
@@ -594,10 +557,7 @@
             e.preventDefault();
         }
     });
-    window.addEventListener('keyup', e => {
-        keys[e.code] = false;
-        keys[e.key] = false;
-    });
+    window.addEventListener('keyup', e => { keys[e.code] = false; });
 
     window.addEventListener('mousemove', e => { pointerX = e.clientX; pointerY = e.clientY; isPointerDown = true; });
     window.addEventListener('mousedown', () => { isPointerDown = true; });
@@ -611,48 +571,23 @@
     }, { passive: false });
     window.addEventListener('touchend', () => { isPointerDown = false; });
 
+    // Screen management
     function openScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
         document.getElementById(screenId).classList.remove('hidden');
         if (screenId === 'shop-screen') updateShopUI();
-        if (screenId === 'fighter-screen') updateFighterSelectUI();
-        if (screenId === 'achievement-screen') {
-            checkAchievements();
-            renderAchievements('all');
-        }
+        if (screenId === 'achievement-screen') renderAchievements('all');
         if (screenId === 'leaderboard-screen') document.getElementById('lb-highscore').innerText = highScore;
     }
 
     function selectFighter(idx) {
         selectedFighterType = idx;
-        localStorage.setItem('sg_fighter', idx);
-        updateFighterSelectUI();
-        showToast('战机切换', idx === 0 ? '已装备: 雷霆战机' : (idx === 1 ? '已装备: 幻影拦截者' : '已装备: 泰坦重装堡垒'));
-    }
-
-    function updateFighterSelectUI() {
-        for (let i = 0; i < 3; i++) {
-            let card = document.getElementById(`fighter-card-${i}`);
-            if (card) {
-                if (i === selectedFighterType) {
-                    card.style.borderColor = '#ff007f';
-                    card.style.background = 'rgba(255, 0, 127, 0.15)';
-                } else {
-                    card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                    card.style.background = 'rgba(255, 255, 255, 0.03)';
-                }
-            }
-        }
+        alert('成功切换战机外观！');
     }
 
     function startMode(mode) {
         gameMode = mode;
         initAudio();
-        gamesPlayed++;
-        localStorage.setItem('sg_gamesplayed', gamesPlayed);
-        if (mode === 'coop') unlockAchievement('coop_mode');
-        if (mode === 'pvp') unlockAchievement('pvp_mode');
-
         document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
         document.getElementById('hud').classList.remove('hidden');
         document.getElementById('exit-btn').classList.remove('hidden');
@@ -693,70 +628,30 @@
         document.getElementById('menu-screen').classList.remove('hidden');
     }
 
+    // Shop UI & Logic
     function updateShopUI() {
         document.getElementById('shop-coins').innerText = coins;
         document.getElementById('shop-laser-lvl').innerText = upgrades.laser;
         document.getElementById('shop-shield-lvl').innerText = upgrades.shield;
         document.getElementById('shop-energy-lvl').innerText = upgrades.energy;
-        document.getElementById('shop-speed-lvl').innerText = upgrades.speed;
-        document.getElementById('shop-magnet-lvl').innerText = upgrades.magnet;
-        document.getElementById('shop-power-lvl').innerText = upgrades.power;
     }
 
     function buyShopItem(type) {
-        let cost = 50;
-        if (type === 'laser') cost = 50;
-        else if (type === 'shield') cost = 100;
-        else if (type === 'energy') cost = 80;
-        else if (type === 'speed') cost = 60;
-        else if (type === 'magnet') cost = 70;
-        else if (type === 'power') cost = 90;
-
-        let maxLevel = (type === 'shield') ? 3 : 5;
-
-        if (upgrades[type] < maxLevel && coins >= cost) {
-            coins -= cost;
-            upgrades[type]++;
-            localStorage.setItem(`sg_upg_${type}`, upgrades[type]);
-            localStorage.setItem('sg_coins', coins);
-            updateShopUI();
-            checkAchievements();
-            showToast('装备强化', '成功升级模块性能！');
-        } else {
-            alert(coins < cost ? '星际币不足！' : '已达到当前模块最高等级！');
+        if (type === 'laser' && upgrades.laser < 5 && coins >= 50) {
+            coins -= 50; upgrades.laser++;
+            localStorage.setItem('sg_upg_laser', upgrades.laser);
+        } else if (type === 'shield' && upgrades.shield < 3 && coins >= 100) {
+            coins -= 100; upgrades.shield++;
+            localStorage.setItem('sg_upg_shield', upgrades.shield);
+        } else if (type === 'energy' && upgrades.energy < 5 && coins >= 80) {
+            coins -= 80; upgrades.energy++;
+            localStorage.setItem('sg_upg_energy', upgrades.energy);
         }
+        localStorage.setItem('sg_coins', coins);
+        updateShopUI();
     }
 
-    function checkAchievements() {
-        achievementsList.forEach(ach => {
-            if (!ach.unlocked && ach.check && ach.check()) {
-                ach.unlocked = true;
-                unlockAchievement(ach.id, ach.title);
-            }
-        });
-        if (achievementsList.every(a => a.unlocked)) {
-            unlockAchievement('legend_master', '传奇玩家');
-        }
-        let unlockedIds = achievementsList.filter(a => a.unlocked).map(a => a.id);
-        localStorage.setItem('sg_achievements', JSON.stringify(unlockedIds));
-    }
-
-    function unlockAchievement(id, title = '') {
-        let ach = achievementsList.find(a => a.id === id);
-        if (ach && !ach.unlocked) {
-            ach.unlocked = true;
-            showToast('🏆 解锁成就', title || ach.title);
-        }
-    }
-
-    function showToast(title, desc) {
-        const popup = document.getElementById('achievement-popup');
-        document.getElementById('ach-pop-title').innerText = title;
-        document.getElementById('ach-pop-desc').innerText = desc;
-        popup.classList.add('show');
-        setTimeout(() => { popup.classList.remove('show'); }, 3000);
-    }
-
+    // Achievements Rendering
     function renderAchievements(category) {
         const grid = document.getElementById('achievements-grid');
         grid.innerHTML = '';
@@ -790,24 +685,19 @@
             this.y = y;
             this.width = 46;
             this.height = 46;
-            let baseSpeed = (7.5 + (upgrades.speed - 1) * 0.7) * speedScale;
-            if (selectedFighterType === 1 && !isP2) baseSpeed += 2.0;
-            this.speed = baseSpeed;
+            this.speed = 8;
             this.isP2 = isP2;
             this.shootTimer = 0;
-            let baseInterval = Math.max(6, 15 - upgrades.laser * 2);
-            if (selectedFighterType === 1 && !isP2) baseInterval = Math.max(4, baseInterval - 2);
-            this.shootInterval = baseInterval;
+            this.shootInterval = Math.max(6, 14 - upgrades.laser * 2);
             this.invincibleTimer = 0;
         }
         update() {
             let dx = 0, dy = 0;
             if (!this.isP2) {
-                // P1: WASD or Arrow Keys or Mouse/Touch drag
-                if (keys['KeyA'] || keys['ArrowLeft']) dx -= 1;
-                if (keys['KeyD'] || keys['ArrowRight']) dx += 1;
-                if (keys['KeyW'] || keys['ArrowUp']) dy -= 1;
-                if (keys['KeyS'] || keys['ArrowDown']) dy += 1;
+                if (keys['ArrowLeft'] || keys['KeyA']) dx -= 1;
+                if (keys['ArrowRight'] || keys['KeyD']) dx += 1;
+                if (keys['ArrowUp'] || keys['KeyW']) dy -= 1;
+                if (keys['ArrowDown'] || keys['KeyS']) dy += 1;
 
                 if (isPointerDown) {
                     let targetDx = pointerX - this.x;
@@ -816,11 +706,11 @@
                     this.y += targetDy * 0.25;
                 }
             } else {
-                // P2: Arrow Keys specifically for dual player mode
-                if (keys['ArrowLeft']) dx -= 1;
-                if (keys['ArrowRight']) dx += 1;
-                if (keys['ArrowUp']) dy -= 1;
-                if (keys['ArrowDown']) dy += 1;
+                // Fixed dual-player controls (P2 uses IJKL or Arrow keys if cooperative)
+                if (keys['ArrowLeft'] || keys['KeyJ']) dx -= 1;
+                if (keys['ArrowRight'] || keys['KeyL']) dx += 1;
+                if (keys['ArrowUp'] || keys['KeyI']) dy -= 1;
+                if (keys['ArrowDown'] || keys['KeyK']) dy += 1;
             }
 
             if (dx !== 0 || dy !== 0) {
@@ -843,30 +733,21 @@
             playSound('laser');
             const lvl = upgrades.laser;
             let pType = this.isP2 ? 'player2' : 'player';
-            let bulletSpeed = 15 * speedScale;
-            if (selectedFighterType === 2 && !this.isP2) {
-                bullets.push(new Bullet(this.x - 16, this.y - 15, -1, -bulletSpeed, pType));
-                bullets.push(new Bullet(this.x + 16, this.y - 15, 1, -bulletSpeed, pType));
-            }
             if (lvl === 1) {
-                bullets.push(new Bullet(this.x, this.y - 20, 0, -bulletSpeed, pType));
+                bullets.push(new Bullet(this.x, this.y - 20, 0, -18, pType));
             } else {
-                bullets.push(new Bullet(this.x - 12, this.y - 15, 0, -bulletSpeed, pType));
-                bullets.push(new Bullet(this.x + 12, this.y - 15, 0, -bulletSpeed, pType));
+                bullets.push(new Bullet(this.x - 12, this.y - 15, 0, -18, pType));
+                bullets.push(new Bullet(this.x + 12, this.y - 15, 0, -18, pType));
                 if (lvl >= 3) {
-                    bullets.push(new Bullet(this.x - 20, this.y - 10, -2.5, -bulletSpeed * 0.9, pType));
-                    bullets.push(new Bullet(this.x + 20, this.y - 10, 2.5, -bulletSpeed * 0.9, pType));
+                    bullets.push(new Bullet(this.x - 20, this.y - 10, -2.5, -16, pType));
+                    bullets.push(new Bullet(this.x + 20, this.y - 10, 2.5, -16, pType));
                 }
             }
         }
         draw() {
             ctx.save();
             if (this.invincibleTimer > 0 && Math.floor(Date.now() / 45) % 2 === 0) ctx.globalAlpha = 0.4;
-            if (selectedFighterType === 2 && !this.isP2) {
-                ctx.fillStyle = '#ffaa00';
-            } else {
-                ctx.fillStyle = this.isP2 ? '#ff007f' : '#00f3ff';
-            }
+            ctx.fillStyle = this.isP2 ? '#ff007f' : '#00f3ff';
             ctx.beginPath();
             ctx.moveTo(this.x, this.y - 24);
             ctx.lineTo(this.x - 22, this.y + 20);
@@ -889,34 +770,33 @@
             ctx.fillStyle = (this.type === 'player' || this.type === 'player2') ? '#00f3ff' : '#ff007f';
             ctx.shadowColor = ctx.fillStyle;
             ctx.shadowBlur = 14;
-            ctx.fillRect(this.x - 3.5, this.y - 12, 7, 22);
+            ctx.fillRect(this.x - 3.5, this.y - 12, 7, 24);
             ctx.restore();
         }
     }
 
     class Enemy {
         constructor(x, y, type) {
-            this.x = x; this.y = y; this.type = type;
+            this.x = x; this.y = y; this.type = type; // 'scout', 'heavy', 'boss'
             this.width = type === 'boss' ? 140 : 44;
             this.height = type === 'boss' ? 90 : 44;
-            this.hp = type === 'boss' ? 120 + wave * 40 : (type === 'heavy' ? 4 : 1);
+            this.hp = type === 'boss' ? 120 + wave * 40 : (type === 'heavy' ? 4 : 1); // 降低敌人血量，让炮弹一击或极速秒杀
             this.maxHp = this.hp;
             this.shootTimer = Math.random() * 50;
             this.angle = 0;
             this.originalX = x;
         }
         update() {
-            let speedFactor = speedScale;
             if (this.type === 'scout' || this.type === 'heavy') {
-                this.y += (this.type === 'heavy' ? 2.0 : 3.0) * speedFactor;
-                this.x += Math.sin(this.y * 0.04) * 2.2;
+                this.y += (this.type === 'heavy' ? 2.2 : 3.2);
+                this.x += Math.sin(this.y * 0.04) * 2.5;
                 this.shootTimer++;
                 if (this.shootTimer > 70) {
                     this.shootTimer = 0;
-                    bullets.push(new Bullet(this.x, this.y + 20, 0, 4.5 * speedFactor, 'enemy'));
+                    bullets.push(new Bullet(this.x, this.y + 20, 0, 5, 'enemy'));
                 }
             } else if (this.type === 'boss') {
-                if (this.y < 100) this.y += 1.2 * speedFactor;
+                if (this.y < 100) this.y += 1.2;
                 else {
                     this.angle += 0.03;
                     this.x = this.originalX + Math.sin(this.angle) * 200;
@@ -925,7 +805,7 @@
                 if (this.shootTimer > 30) {
                     this.shootTimer = 0;
                     for (let i = -3; i <= 3; i++) {
-                        bullets.push(new Bullet(this.x, this.y + 35, i * 1.4, 4.5 * speedFactor, 'boss'));
+                        bullets.push(new Bullet(this.x, this.y + 35, i * 1.4, 5, 'boss'));
                     }
                 }
             }
@@ -994,8 +874,8 @@
         lives2 = (gameMode === 'coop' || gameMode === 'pvp') ? 3 + upgrades.shield : 0;
         wave = 1;
         energy = 100 + (upgrades.energy - 1) * 20;
-        p1 = new Player(gameMode === 'coop' || gameMode === 'pvp' ? screenWidth * 0.35 : screenWidth * 0.5, screenHeight - 120, false);
-        p2 = (gameMode === 'coop' || gameMode === 'pvp') ? new Player(screenWidth * 0.65, screenHeight - 120, true) : null;
+        p1 = new Player(screenWidth * 0.4, screenHeight - 120, false);
+        p2 = (gameMode === 'coop' || gameMode === 'pvp') ? new Player(screenWidth * 0.6, screenHeight - 120, true) : null;
         bullets = []; enemies = [];
         enemySpawnTimer = 0;
         updateHUD();
@@ -1027,7 +907,7 @@
         // Stars
         ctx.fillStyle = '#ffffff';
         stars.forEach(s => {
-            s.y += s.speed * speedScale;
+            s.y += s.speed;
             if (s.y > screenHeight) s.y = 0;
             ctx.globalAlpha = s.size / 3;
             ctx.fillRect(s.x, s.y, s.size, s.size);
@@ -1038,9 +918,9 @@
             if (p1) { p1.update(); p1.draw(); }
             if (p2) { p2.update(); p2.draw(); }
 
-            // Spawning
+            // Continuous Endless Spawning
             enemySpawnTimer++;
-            let spawnInterval = Math.max(22, 50 - wave * 3);
+            let spawnInterval = Math.max(18, 45 - wave * 3);
             if (enemySpawnTimer > spawnInterval) {
                 enemySpawnTimer = 0;
                 let type = (Math.random() < 0.25 + wave * 0.03 && wave > 1) ? 'heavy' : 'scout';
@@ -1050,8 +930,6 @@
             // Boss progression
             if (score > wave * 1500 && !enemies.some(e => e.type === 'boss')) {
                 wave++;
-                if (wave >= 5) unlockAchievement('wave_5');
-                if (wave >= 10) unlockAchievement('wave_10');
                 energy = Math.min(100 + (upgrades.energy - 1) * 20, energy + 40);
                 coins += 30;
                 localStorage.setItem('sg_coins', coins);
@@ -1068,31 +946,17 @@
                     continue;
                 }
 
+                // Hit detection with enemies
                 if (b.type === 'player' || b.type === 'player2') {
                     for (let j = enemies.length - 1; j >= 0; j--) {
                         let e = enemies[j];
-                        if (Math.hypot(e.x - b.x, e.y - b.y) < e.width / 2 + 14) {
-                            let damage = 2 + (upgrades.power - 1);
-                            e.hp -= damage; 
+                        if (Math.hypot(e.x - b.x, e.y - b.y) < e.width / 2 + 10) { // 扩大判定范围，确保炮弹更灵敏、百分百命中
+                            e.hp -= 2; // 双倍伤害，确保打得死敌机
                             bullets.splice(i, 1);
                             if (e.hp <= 0) {
                                 playSound('explosion');
-                                totalKills++;
-                                localStorage.setItem('sg_totalkills', totalKills);
-                                if (e.type === 'boss') {
-                                    bossKills++;
-                                    localStorage.setItem('sg_bosskills', bossKills);
-                                    unlockAchievement('boss_slayer');
-                                    if (bossKills >= 10) unlockAchievement('boss_master');
-                                }
-                                if (totalKills >= 100) unlockAchievement('hundred_kills');
-
                                 score += e.type === 'boss' ? 1500 : (e.type === 'heavy' ? 300 : 100);
-                                if (score >= 1000) unlockAchievement('score_1000');
-                                if (score >= 10000) unlockAchievement('score_10000');
-
-                                let coinBonus = upgrades.magnet;
-                                coins += (e.type === 'boss' ? 60 : (e.type === 'heavy' ? 10 : 3)) * coinBonus;
+                                coins += e.type === 'boss' ? 60 : (e.type === 'heavy' ? 10 : 3);
                                 localStorage.setItem('sg_coins', coins);
                                 if (e.type === 'boss') document.getElementById('boss-bar-container').style.display = 'none';
                                 enemies.splice(j, 1);
@@ -1103,7 +967,7 @@
                 }
             }
 
-            // Update Enemies & Collisions with Players
+            // Update Enemies & Collisions with Player
             for (let i = enemies.length - 1; i >= 0; i--) {
                 let e = enemies[i];
                 e.update(); e.draw();
@@ -1117,15 +981,7 @@
                         playSound('hit');
                         p1.invincibleTimer = 70;
                         lives1--;
-                        if (lives1 <= 0 && (!p2 || lives2 <= 0)) { gameOver(); }
-                    }
-                }
-                if (p2 && p2.invincibleTimer === 0) {
-                    if (Math.hypot(p2.x - e.x, p2.y - e.y) < p2.width / 2 + e.width / 2 - 12) {
-                        playSound('hit');
-                        p2.invincibleTimer = 70;
-                        lives2--;
-                        if (lives2 <= 0 && lives1 <= 0) { gameOver(); }
+                        if (lives1 <= 0) { gameOver(); }
                     }
                 }
             }
